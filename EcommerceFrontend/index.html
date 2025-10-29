@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products Store</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Our Products</h1>
+            <p>Discover our amazing collection of products</p>
+        </header>
+
+        <!-- Add Product Form -->
+        <div class="add-product-section">
+            <h2>Add New Product</h2>
+            <form id="addProductForm" class="product-form">
+                <div class="form-group">
+                    <label for="title">Product Title:</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description" rows="3"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="price">Price:</label>
+                    <input type="number" id="price" name="price" step="0.01" min="0" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="imgUrl">Image URL:</label>
+                    <input type="url" id="imgUrl" name="imgUrl" placeholder="https://example.com/image.jpg">
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Add Product</button>
+                    <button type="button" class="btn btn-secondary" id="resetForm">Reset</button>
+                </div>
+            </form>
+            <div id="formMessage" class="form-message"></div>
+        </div>
+
+        <div class="loading" id="loading">
+            Loading products...
+        </div>
+
+        <div class="error" id="error" style="display: none;">
+            Failed to load products. Please try again later.
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be loaded here dynamically -->
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
