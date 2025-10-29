@@ -9,10 +9,18 @@ import (
 )
 
 func Serve() {
+	manager := middleware.NewManager()
 	mux := http.NewServeMux()
-
-	mux.Handle("GET /abin", middleware.Hudai(middleware.Logger(http.HandlerFunc(handlers.Test))))
-
+	mux.Handle("GET /rahim", manager.With(
+		http.HandlerFunc(handlers.Test),
+		middleware.Logger,
+		middleware.Hudai,
+	))
+	mux.Handle("GET /abin", manager.With(
+		http.HandlerFunc(handlers.Test),
+		middleware.Hudai,
+		middleware.Logger,
+	))
 	mux.Handle("GET /products", middleware.Hudai(middleware.Logger(http.HandlerFunc(handlers.GetProductsHandler))))
 	mux.Handle("POST /products", middleware.Hudai(middleware.Logger(http.HandlerFunc(handlers.CreateProductHandler))))
 	mux.Handle("GET /products/{id}", middleware.Hudai(middleware.Logger(http.HandlerFunc(handlers.GetProductById))))
