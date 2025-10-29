@@ -1,6 +1,8 @@
-package product
+package database
 
-// Product struct represents a product in the ecommerce application
+// global slice to store products
+var ProductList []Product
+
 type Product struct {
 	ID          int     `json:"id"`
 	Title       string  `json:"title"`
