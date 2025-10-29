@@ -21,9 +21,21 @@ func Serve() {
 		middleware.Hudai,
 		middleware.Logger,
 	))
-	mux.Handle("GET /products", middleware.Hudai(middleware.Logger(http.HandlerFunc(handlers.GetProductsHandler))))
-	mux.Handle("POST /products", middleware.Hudai(middleware.Logger(http.HandlerFunc(handlers.CreateProductHandler))))
-	mux.Handle("GET /products/{id}", middleware.Hudai(middleware.Logger(http.HandlerFunc(handlers.GetProductById))))
+	mux.Handle("GET /products", manager.With(
+		http.HandlerFunc(handlers.GetProductsHandler),
+		middleware.Logger,
+		middleware.Hudai,
+	))
+	mux.Handle("POST /products", manager.With(
+		http.HandlerFunc(handlers.CreateProductHandler),
+		middleware.Logger,
+		middleware.Hudai,
+	))
+	mux.Handle("GET /products/{id}", manager.With(
+		http.HandlerFunc(handlers.GetProductById),
+		middleware.Logger,
+		middleware.Hudai,
+	))
 
 	fmt.Println("Starting server on :8080")
 	globalRouter := global_router.GlobalRouter(mux)
