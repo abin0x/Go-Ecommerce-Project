@@ -1,6 +1,8 @@
 package middleware
 
-import "net/http"
+import (
+	"net/http"
+)
 
 type Middleware func(http.Handler) http.Handler
 
@@ -15,10 +17,19 @@ func NewManager() *Manager {
 
 }
 
+func (mngr *Manager) Use(middlewares ...Middleware) {
+	mngr.globalMiddlewares = append(mngr.globalMiddlewares, middlewares...)
+}
+
 func (mngr *Manager) With(next http.Handler, middlewares ...Middleware) http.Handler {
 	n := next
 	for _, middleware := range middlewares {
 		n = middleware(n)
 	}
+
+	for _, globalMiddleware := range middlewares {
+		n = globalMiddleware(n)
+	}
+
 	return n
 }
