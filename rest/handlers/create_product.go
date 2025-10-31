@@ -8,7 +8,7 @@ import (
 	"net/http"
 )
 
-func CreateProductHandler(w http.ResponseWriter, r *http.Request) {
+func CreateProduct(w http.ResponseWriter, r *http.Request) {
 
 	var newProduct database.Product
 	decoder := json.NewDecoder(r.Body)
@@ -18,8 +18,7 @@ func CreateProductHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Bad request", http.StatusBadRequest)
 		return
 	}
-	newProduct.ID = len(database.ProductList) + 1
-	database.ProductList = append(database.ProductList, newProduct)
-	util.SendData(w, newProduct, http.StatusCreated)
+	createdProduct := database.Store(newProduct)
+	util.SendData(w, createdProduct, http.StatusCreated)
 
 }

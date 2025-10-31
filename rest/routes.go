@@ -7,16 +7,6 @@ import (
 )
 
 func InitRoutes(mux *http.ServeMux, manager *middleware.Manager) {
-	mux.Handle("GET /rahim",
-		manager.With(
-			http.HandlerFunc(handlers.Test),
-		),
-	)
-	mux.Handle("GET /abin",
-		manager.With(
-			http.HandlerFunc(handlers.Test),
-		),
-	)
 	mux.Handle("GET /products",
 		manager.With(
 			http.HandlerFunc(handlers.GetProductsHandler),
@@ -24,12 +14,23 @@ func InitRoutes(mux *http.ServeMux, manager *middleware.Manager) {
 	)
 	mux.Handle("POST /products",
 		manager.With(
-			http.HandlerFunc(handlers.CreateProductHandler),
+			http.HandlerFunc(handlers.CreateProduct),
 		),
 	)
 	mux.Handle("GET /products/{id}",
 		manager.With(
-			http.HandlerFunc(handlers.GetProductById),
+			http.HandlerFunc(handlers.GetProduct),
+		),
+	)
+	mux.Handle("PUT /products/{id}",
+		manager.With(
+			http.HandlerFunc(handlers.UpdateProduct),
+		),
+	)
+}
+	mux.Handle("DELETE /products/{id}",
+		manager.With(
+			http.HandlerFunc(handlers.DeleteProduct),
 		),
 	)
 }
