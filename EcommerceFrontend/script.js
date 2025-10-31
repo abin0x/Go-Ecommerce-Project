@@ -1,7 +1,7 @@
 class ProductManager {
     constructor() {
-        this.apiUrl = 'http://localhost:8080/products';
-        this.createApiUrl = 'http://localhost:8080/products';
+        this.apiUrl = 'http://localhost:3000/products';
+        this.createApiUrl = 'http://localhost:3000/products';
         this.productsGrid = document.getElementById('productsGrid');
         this.loadingElement = document.getElementById('loading');
         this.errorElement = document.getElementById('error');

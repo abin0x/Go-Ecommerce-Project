@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+
+	"github.com/joho/godotenv"
 )
 
 var configurations Config
@@ -11,10 +13,17 @@ var configurations Config
 type Config struct {
 	Version     string
 	ServiceName string
-	HttpPort    int64
+	HttpPort    int
 }
 
 func loadConfig() {
+
+	err := godotenv.Load()
+	if err != nil {
+		fmt.Println("Failed to load the env variables: ", err)
+		os.Exit(1)
+	}
+
 	version := os.Getenv("VERSION")
 	if version == "" {
 		fmt.Println("version is required")
@@ -41,7 +50,7 @@ func loadConfig() {
 	configurations = Config{
 		Version:     version,
 		ServiceName: serviceName,
-		HttpPort:    port,
+		HttpPort:    int(port),
 	}
 
 }
