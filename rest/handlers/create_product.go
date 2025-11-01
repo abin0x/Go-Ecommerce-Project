@@ -9,8 +9,6 @@ import (
 	"net/http"
 )
 
-// fdkjdf
-
 func CreateProduct(w http.ResponseWriter, r *http.Request) {
 
 	var newProduct database.Product
