@@ -1,4 +1,9 @@
 package repo
 
-
-type
+type ProductRepo interface {
+	Create()
+	Get()
+	List()
+	Delete()
+	Update()
+}
