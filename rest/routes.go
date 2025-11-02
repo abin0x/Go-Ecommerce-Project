@@ -35,14 +35,5 @@ func InitRoutes(mux *http.ServeMux, manager *middleware.Manager) {
 			middleware.AuthenticationJWT,
 		),
 	)
-	mux.Handle("POST /users",
-		manager.With(
-			http.HandlerFunc(handlers.CreateUser),
-		),
-	)
-	mux.Handle("POST /users/login",
-		manager.With(
-			http.HandlerFunc(handlers.Login),
-		),
-	)
+
 }
