@@ -3,6 +3,7 @@ package rest
 import (
 	"ecommerce/config"
 	"ecommerce/rest/handlers/product"
+	"ecommerce/rest/handlers/review"
 	"ecommerce/rest/handlers/user"
 	middleware "ecommerce/rest/middlewares"
 	"fmt"
@@ -14,12 +15,17 @@ import (
 type Server struct {
 	productHandler *product.Handler
 	userHandler    *user.Handler
+	reviewHandler  *review.Handler
 }
 
-func NewServer(productHandler *product.Handler, userHandler *user.Handler) *Server {
+func NewServer(productHandler *product.Handler,
+	userHandler *user.Handler,
+	reviewHandler *review.Handler,
+) *Server {
 	return &Server{
 		productHandler: productHandler,
 		userHandler:    userHandler,
+		reviewHandler:  reviewHandler,
 	}
 }
 
@@ -36,6 +42,7 @@ func (server *Server) Start(cnf config.Config) {
 	// InitRoutes(mux, manager)
 	server.productHandler.RegisterRoutes(mux, manager)
 	server.userHandler.RegisterRoutes(mux, manager)
+	server.reviewHandler.RegisterRoutes(mux, manager)
 
 	addr := ":" + strconv.Itoa(cnf.HttpPort)
 	fmt.Println("Starting server on ", addr)

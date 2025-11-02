@@ -4,6 +4,7 @@ import (
 	"ecommerce/config"
 	"ecommerce/rest"
 	"ecommerce/rest/handlers/product"
+	"ecommerce/rest/handlers/review"
 	"ecommerce/rest/handlers/user"
 )
 
@@ -12,6 +13,7 @@ func Serve() {
 
 	productHandler := product.NewHandler()
 	userHandler := user.NewHandler()
-	server := rest.NewServer(productHandler, userHandler)
+	reviewHandler := review.NewHandler()
+	server := rest.NewServer(productHandler, userHandler, reviewHandler)
 	server.Start(cnf)
 }
