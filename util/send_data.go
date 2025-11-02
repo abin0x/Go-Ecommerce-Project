@@ -6,7 +6,7 @@ import (
 )
 
 // senData sends a JSON response with the given data and status code
-func SendData(w http.ResponseWriter, data interface{}, statusCode int) {
+func SendData(w http.ResponseWriter, statusCode int, data interface{}) {
 	w.WriteHeader(statusCode)
 	encoder := json.NewEncoder(w)
 	encoder.Encode(data)
