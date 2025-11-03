@@ -2,17 +2,18 @@ package repo
 
 import (
 	"database/sql"
+	"fmt"
 
 	"github.com/jmoiron/sqlx"
 )
 
 type User struct {
-	ID          int    `json:"id"`
-	FirstName   string `json:"first name"`
-	LastName    string `json:"last name"`
-	Email       string `json:"email"`
-	Password    string `json:"password"`
-	IsShopOwner bool   `json:"is_shop_owner"`
+	ID          int    `json:"id" db:"id"`
+	FirstName   string `json:"first name" db:"first_name"`
+	LastName    string `json:"last name" db:"last_name"`
+	Email       string `json:"email" db:"email"`
+	Password    string `json:"password" db:"password"`
+	IsShopOwner bool   `json:"is_shop_owner" db:"is_shop_owner"`
 }
 
 type UserRepo interface {
@@ -39,8 +40,8 @@ func (r userRepo) Create(user User) (*User, error) {
 		first_name, 
 		last_name, 
 		email, 
-		password, i
-		s_shop_owner
+		password, 
+		is_shop_owner
 	)
 		VALUES (
 		:first_name, 
@@ -54,6 +55,7 @@ func (r userRepo) Create(user User) (*User, error) {
 	var userID int
 	rows, err := r.db.NamedQuery(query, user)
 	if err != nil {
+		fmt.Println(err)
 		return nil, err
 	}
 	if rows.Next() {
