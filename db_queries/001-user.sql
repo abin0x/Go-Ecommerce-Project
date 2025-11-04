@@ -6,3 +6,5 @@ CREATE TABLE users (
     password     TEXT NOT NULL,
     is_shop_owner BOOLEAN DEFAULT FALSE
 );
+
+here data base
