@@ -4,6 +4,7 @@ CREATE TABLE users (
     last_name    VARCHAR(100) NOT NULL,
     email        VARCHAR(150) UNIQUE NOT NULL,
     age INT NOT NULL,
+    money REAL NOT NULL
     password     TEXT NOT NULL,
     is_shop_owner BOOLEAN DEFAULT FALSE
 );
