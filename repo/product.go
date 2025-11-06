@@ -3,11 +3,11 @@ package repo
 import "github.com/jmoiron/sqlx"
 
 type Product struct {
-	ID          int     `json:"id"`
-	Title       string  `json:"title"`
-	Description string  `json:"description"`
-	Price       float64 `json:"price"`
-	ImgUrl      string  `json:"imgUrl"`
+	ID          int     `json:"id" db:"id"`
+	Title       string  `json:"title" db:"title"`
+	Description string  `json:"description" db:"description"`
+	Price       float64 `json:"price" db:"price"`
+	ImgUrl      string  `json:"imgUrl" db:"img_url"`
 }
 
 type ProductRepo interface {
@@ -30,8 +30,25 @@ func NewProductRepo(db *sqlx.DB) ProductRepo {
 }
 
 func (r *productRepo) Create(p Product) (*Product, error) {
-	p.ID = len(r.productList) + 1
-	r.productList = append(r.productList, &p)
+	query := `
+	INSERT INTO produtcs (
+	title,
+	description,
+	price,
+	img_url
+	) VALUES (
+		$1,
+		$2,
+		$3,
+		$4
+	)
+	RETURNING id
+	`
+	row := r.db.QueryRow(query, p.Title, p.Description, p.Price, p.ImgUrl)
+	err := row.Scan(&p.ID)
+	if err != nil {
+		return nil, err
+	}
 	return &p, nil
 }
 
