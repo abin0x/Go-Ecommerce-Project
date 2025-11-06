@@ -100,8 +100,18 @@ func (r *productRepo) List() ([]*Product, error) {
 	return prdList, nil
 }
 
-func (r *productRepo) Update(product Product) (*Product, error) {
-
+func (r *productRepo) Update(p Product) (*Product, error) {
+	query := `
+		UPDATE products
+		SET title=$1,description=$2,price=$3,img_url=$4
+		WHERE id=$5
+	`
+	row := r.db.QueryRow(query, p.Title, p.Description, p.Price, p.ImgUrl)
+	err := row.Err()
+	if err != nil {
+		return nil, err
+	}
+	return &p, nil
 }
 
 func (r *productRepo) Delete(id int) error {
