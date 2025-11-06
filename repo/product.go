@@ -45,6 +45,15 @@ func (r *productRepo) List() ([]*Product, error) {
 	return r.productList, nil
 }
 
+func (r *productRepo) Update(product Product) (*Product, error) {
+	for idx, p := range r.productList {
+		if p.ID == product.ID {
+			r.productList[idx] = &product
+		}
+	}
+	return &product, nil
+}
+
 func (r *productRepo) Delete(productID int) error {
 	var tempList []*Product
 
@@ -56,15 +65,6 @@ func (r *productRepo) Delete(productID int) error {
 	}
 	r.productList = tempList
 	return nil
-}
-
-func (r *productRepo) Update(product Product) (*Product, error) {
-	for idx, p := range r.productList {
-		if p.ID == product.ID {
-			r.productList[idx] = &product
-		}
-	}
-	return &product, nil
 }
 
 func generateInitialProducts(r *productRepo) {
