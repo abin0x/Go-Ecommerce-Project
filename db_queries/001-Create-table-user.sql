@@ -10,12 +10,3 @@ CREATE TABLE users (
     is_shop_owner BOOLEAN DEFAULT FALSE
 );
 
-here data base
-djsfjds
-ewrje
-fhekjj
-ehrewrehwh
-eqwhjekqwj
-qelwhkwj
-wn,wermwm,
-mwrnn
