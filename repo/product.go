@@ -35,7 +35,7 @@ func NewProductRepo(db *sqlx.DB) ProductRepo {
 
 func (r *productRepo) Create(p Product) (*Product, error) {
 	query := `
-	INSERT INTO produtcs (
+	INSERT INTO products (
 	title,
 	description,
 	price,
@@ -65,7 +65,7 @@ func (r *productRepo) Get(id int) (*Product, error) {
 	title,
 	description,
 	price,
-	img_url,
+	img_url
 	from products
 	where id=$1
 	`

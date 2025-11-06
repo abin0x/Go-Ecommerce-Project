@@ -1,4 +1,4 @@
-CREATE TABLE produtcs (
+CREATE TABLE products  (
     id BIGSERIAL PRIMARY KEY,
     title   VARCHAR(255) NOT NULL,
     description TEXT,
