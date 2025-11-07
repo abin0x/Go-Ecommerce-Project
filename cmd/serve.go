@@ -19,6 +19,11 @@ func Serve() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+	err = db.MigrateDB(dbCon, "./migrations")
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 	productRepo := repo.NewProductRepo(dbCon)
 	userRepo := repo.NewUserRepo(dbCon)
 
