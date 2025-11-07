@@ -24,7 +24,7 @@ type Config struct {
 	ServiceName string
 	HttpPort    int
 	JwtSecret   string
-	Db          DBConfig
+	Db          *DBConfig
 }
 
 func loadConfig() {
@@ -50,6 +50,12 @@ func loadConfig() {
 	httpPort := os.Getenv("HTTP_PORT")
 	if httpPort == "" {
 		fmt.Println("Http port is required")
+		os.Exit(1)
+	}
+
+	httpPortInt, err := strconv.Atoi(httpPort)
+	if err != nil {
+		fmt.Println("HTTP_PORT must be a number")
 		os.Exit(1)
 	}
 
@@ -90,15 +96,31 @@ func loadConfig() {
 		os.Exit(1)
 	}
 	enableSslMode := os.Getenv("ENABLE_SSL_MODE")
+	enbleSSLMode, err := strconv.ParseBool(enableSslMode)
+	if err != nil {
+		fmt.Println("invalid enable ssl mode value", err)
+		os.Exit(1)
+	}
 	// if enableSslMode == "" {
 	// 	fmt.Println("DB PASS is required")
 	// 	os.Exit(1)
 	// }
+
+	dbConfig := &DBConfig{
+		Host:          dbHost,
+		Port:          int(dbPrt),
+		Name:          dbName,
+		User:          dbUser,
+		Password:      dbPass,
+		EnableSSLMODE: enbleSSLMode,
+	}
+
 	configurations = &Config{
 		Version:     version,
 		ServiceName: serviceName,
-		HttpPort:    int(port),
+		HttpPort:    httpPortInt,
 		JwtSecret:   jwtSecretKey,
+		Db:          dbConfig,
 	}
 
 }
