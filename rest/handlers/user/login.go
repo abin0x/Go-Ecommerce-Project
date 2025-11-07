@@ -27,6 +27,10 @@ func (h *Handler) Login(w http.ResponseWriter, r *http.Request) {
 		util.SendError(w, http.StatusUnauthorized, "Unauthorized")
 		return
 	}
+	if usr == nil {
+		util.SendError(w, http.StatusUnauthorized, "Unauthorized")
+		return
+	}
 
 	accessToken, err := util.CreateJwt(h.cnf.JwtSecret, util.Payload{
 		Sub:       usr.ID,
