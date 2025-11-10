@@ -1,6 +1,13 @@
 package user
 
-import "ecommerce/domain"
+import (
+	"ecommerce/domain"
+	userHandler "ecommerce/rest/handlers/user"
+)
+
+type Service interface {
+	userHandler.Service
+}
 
 type UserRepo interface {
 	Create(user domain.User) (*domain.User, error)
