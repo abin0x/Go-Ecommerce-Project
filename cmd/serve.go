@@ -3,6 +3,7 @@ package cmd
 import (
 	"ecommerce/config"
 	"ecommerce/infra/db"
+	"ecommerce/product"
 	"ecommerce/repo"
 	"ecommerce/rest"
 	productHandler "ecommerce/rest/handlers/product"
@@ -32,10 +33,11 @@ func Serve() {
 	//domains
 
 	usrSvc := user.NewSevice(userRepo)
+	prdctSvc := product.NewService(productRepo)
 
 	middlewares := middleware.NewMiddlewares(cnf)
-
-	productHandler := productHandler.NewHandler(middlewares, productRepo)
+	//Handlers
+	productHandler := productHandler.NewHandler(middlewares, prdctSvc)
 	userHandler := userHandler.NewHandler(cnf, usrSvc)
 
 	server := rest.NewServer(
