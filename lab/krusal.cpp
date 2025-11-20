@@ -55,5 +55,3 @@ int main() {
   for (auto x : ans)
     cout << x[0] << " " << x[1] << "\n";
 }
-
-djfnf fd, fdms dafds, fasmfsdn
