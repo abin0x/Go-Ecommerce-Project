@@ -56,4 +56,4 @@ int main() {
     cout << x[0] << " " << x[1] << "\n";
 }
 
-djfnf
+djfnf fd, fdms
