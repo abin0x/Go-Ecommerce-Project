@@ -1,0 +1,396 @@
+<svg viewBox="0 0 1800 1400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-size: 24px; font-weight: bold; fill: #000; font-family: Arial, sans-serif; }
+      .subtitle { font-size: 14px; fill: #555; font-family: Arial, sans-serif; }
+      .component-name { font-size: 13px; font-weight: bold; fill: #000; font-family: Arial, sans-serif; }
+      .pin-label { font-size: 11px; fill: #333; font-family: Arial, sans-serif; }
+      .wire-label { font-size: 10px; fill: #fff; font-weight: bold; font-family: Arial, sans-serif; background: none; }
+      .legend-title { font-size: 12px; font-weight: bold; fill: #000; font-family: Arial, sans-serif; }
+      .legend-text { font-size: 10px; fill: #333; font-family: Arial, sans-serif; }
+      .note { font-size: 9px; fill: #555; font-family: Arial, sans-serif; }
+    </style>
+    
+    <!-- Arrow marker for wire direction -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+      <polygon points="0 0, 10 5, 0 10" fill="#666" />
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1800" height="1400" fill="#f8f8f8"/>
+
+  <!-- Title -->
+  <text x="900" y="35" text-anchor="middle" class="title">Real-time Bus Tracking System - Fritzing Style Wiring Diagram</text>
+
+  <!-- ==================== LEGEND ==================== -->
+  <g id="legend">
+    <rect x="20" y="50" width="250" height="160" fill="#fff" stroke="#333" stroke-width="2" rx="8"/>
+    <text x="30" y="70" class="legend-title">Wire Color Legend:</text>
+    
+    <line x1="30" y1="85" x2="70" y2="85" stroke="red" stroke-width="3"/>
+    <text x="80" y="90" class="legend-text">Power (+)</text>
+    
+    <line x1="30" y1="105" x2="70" y2="105" stroke="black" stroke-width="3"/>
+    <text x="80" y="110" class="legend-text">Ground (-)</text>
+    
+    <line x1="30" y1="125" x2="70" y2="125" stroke="#00aa00" stroke-width="2.5"/>
+    <text x="80" y="130" class="legend-text">UART (TX/RX)</text>
+    
+    <line x1="30" y1="145" x2="70" y2="145" stroke="#ff8800" stroke-width="2.5"/>
+    <text x="80" y="150" class="legend-text">GPIO Signals</text>
+    
+    <line x1="30" y1="165" x2="70" y2="165" stroke="#9933ff" stroke-width="2.5"/>
+    <text x="80" y="170" class="legend-text">Buzzer Control</text>
+    
+    <line x1="30" y1="185" x2="70" y2="185" stroke="black" stroke-width="4" stroke-dasharray="5,5"/>
+    <text x="80" y="190" class="legend-text">Common Ground</text>
+  </g>
+
+  <!-- ==================== BATTERY ==================== -->
+  <g id="battery-component">
+    <rect x="50" y="250" width="100" height="140" fill="#ffe6e6" stroke="#cc0000" stroke-width="2.5" rx="8"/>
+    <ellipse cx="100" cy="265" rx="20" ry="8" fill="#cc0000"/>
+    <ellipse cx="100" cy="265" rx="17" ry="5" fill="#ff6666"/>
+    <text x="100" y="320" text-anchor="middle" class="component-name">Li-ion Battery</text>
+    <text x="100" y="338" text-anchor="middle" class="component-name">7.4V - 9V</text>
+    
+    <!-- Positive terminal -->
+    <circle cx="70" cy="285" r="5" fill="red" stroke="#cc0000" stroke-width="2"/>
+    <text x="55" y="290" text-anchor="end" class="pin-label" font-weight="bold">(+)</text>
+    
+    <!-- Negative terminal -->
+    <circle cx="130" cy="285" r="5" fill="#333" stroke="#000" stroke-width="2"/>
+    <text x="145" y="290" text-anchor="start" class="pin-label" font-weight="bold">(-)</text>
+  </g>
+
+  <!-- ==================== ROCKER SWITCH ==================== -->
+  <g id="rocker-switch">
+    <rect x="50" y="430" width="100" height="100" fill="#e8e8e8" stroke="#555" stroke-width="2" rx="6"/>
+    <rect x="65" y="445" width="70" height="30" fill="#999" stroke="#333" stroke-width="1" rx="4"/>
+    <circle cx="80" cy="460" r="4" fill="#333"/>
+    <circle cx="100" cy="460" r="4" fill="#333"/>
+    <text x="100" y="500" text-anchor="middle" class="component-name">Rocker</text>
+    <text x="100" y="518" text-anchor="middle" class="component-name">Switch</text>
+    
+    <!-- Switch output pins -->
+    <circle cx="75" cy="540" r="4" fill="red" stroke="#cc0000" stroke-width="2"/>
+    <circle cx="125" cy="540" r="4" fill="#333" stroke="#000" stroke-width="2"/>
+    <text x="60" y="548" class="pin-label">IN</text>
+    <text x="135" y="548" class="pin-label">GND</text>
+  </g>
+
+  <!-- ==================== LM2596 BUCK CONVERTER ==================== -->
+  <g id="buck-converter">
+    <rect x="250" y="250" width="160" height="180" fill="#fff9e6" stroke="#cc9900" stroke-width="2.5" rx="8"/>
+    <text x="330" y="275" text-anchor="middle" class="component-name">LM2596</text>
+    <text x="330" y="293" text-anchor="middle" class="component-name">Buck Converter</text>
+    
+    <!-- Display/status area -->
+    <rect x="270" y="305" width="120" height="35" fill="#222" stroke="#666" stroke-width="1" rx="3"/>
+    <text x="330" y="333" text-anchor="middle" class="component-name" fill="#0f0">5.0V</text>
+    
+    <!-- Input terminals (Left side) -->
+    <circle cx="260" cy="350" r="5" fill="red" stroke="#cc0000" stroke-width="2"/>
+    <text x="245" y="356" text-anchor="end" class="pin-label" font-weight="bold">IN+</text>
+    
+    <circle cx="260" cy="385" r="5" fill="#333" stroke="#000" stroke-width="2"/>
+    <text x="245" y="391" text-anchor="end" class="pin-label" font-weight="bold">IN-</text>
+    
+    <!-- Output terminals (Right side) -->
+    <circle cx="400" cy="350" r="5" fill="red" stroke="#cc0000" stroke-width="2"/>
+    <text x="415" y="356" text-anchor="start" class="pin-label" font-weight="bold">OUT+</text>
+    
+    <circle cx="400" cy="385" r="5" fill="#333" stroke="#000" stroke-width="2"/>
+    <text x="415" y="391" text-anchor="start" class="pin-label" font-weight="bold">OUT-</text>
+  </g>
+
+  <!-- ==================== SIM7600E MODULE ==================== -->
+  <g id="sim7600-module">
+    <rect x="550" y="250" width="160" height="220" fill="#ffe6f0" stroke="#c2185b" stroke-width="2.5" rx="8"/>
+    <text x="630" y="275" text-anchor="middle" class="component-name">SIM7600E</text>
+    <text x="630" y="293" text-anchor="middle" class="component-name">LTE Module</text>
+    
+    <!-- SIM slot -->
+    <rect x="610" y="310" width="40" height="25" fill="#999" stroke="#333" stroke-width="1" rx="2"/>
+    <text x="630" y="328" text-anchor="middle" class="pin-label" font-weight="bold">SIM</text>
+    
+    <!-- Left side pins -->
+    <circle cx="560" cy="360" r="4" fill="red" stroke="#cc0000" stroke-width="2"/>
+    <text x="545" y="365" text-anchor="end" class="pin-label" font-weight="bold">5-12V</text>
+    
+    <circle cx="560" cy="390" r="4" fill="#333" stroke="#000" stroke-width="2"/>
+    <text x="545" y="395" text-anchor="end" class="pin-label" font-weight="bold">GND</text>
+    
+    <circle cx="560" cy="420" r="4" fill="#00aa00" stroke="#009900" stroke-width="2"/>
+    <text x="545" y="425" text-anchor="end" class="pin-label" font-weight="bold">RXD</text>
+    
+    <circle cx="560" cy="450" r="4" fill="#00aa00" stroke="#009900" stroke-width="2"/>
+    <text x="545" y="455" text-anchor="end" class="pin-label" font-weight="bold">TXD</text>
+    
+    <!-- Status LEDs -->
+    <circle cx="630" cy="330" r="3" fill="#ff6666" stroke="#cc0000" stroke-width="1"/>
+    <text x="630" y="305" text-anchor="middle" class="pin-label">Status</text>
+  </g>
+
+  <!-- ==================== ESP32 DEVKIT ==================== -->
+  <g id="esp32-board">
+    <rect x="850" y="240" width="180" height="400" fill="#e6f2ff" stroke="#0052cc" stroke-width="2.5" rx="8"/>
+    <text x="940" y="265" text-anchor="middle" class="component-name">ESP32</text>
+    <text x="940" y="283" text-anchor="middle" class="component-name">DevKit V1</text>
+    
+    <!-- Left side pins (top to bottom) -->
+    <circle cx="860" cy="310" r="3.5" fill="#333" stroke="#000" stroke-width="1.5"/>
+    <text x="848" y="315" text-anchor="end" class="pin-label">GND</text>
+    
+    <circle cx="860" cy="335" r="3.5" fill="red" stroke="#cc0000" stroke-width="1.5"/>
+    <text x="848" y="340" text-anchor="end" class="pin-label">VIN</text>
+    
+    <circle cx="860" cy="360" r="3.5" fill="#333" stroke="#000" stroke-width="1.5"/>
+    <text x="848" y="365" text-anchor="end" class="pin-label">G16(RX)</text>
+    
+    <circle cx="860" cy="385" r="3.5" fill="#00aa00" stroke="#009900" stroke-width="1.5"/>
+    <text x="848" y="390" text-anchor="end" class="pin-label">G17(TX)</text>
+    
+    <circle cx="860" cy="410" r="3.5" fill="#ff8800" stroke="#cc6600" stroke-width="1.5"/>
+    <text x="848" y="415" text-anchor="end" class="pin-label">G18</text>
+    
+    <circle cx="860" cy="435" r="3.5" fill="#ff8800" stroke="#cc6600" stroke-width="1.5"/>
+    <text x="848" y="440" text-anchor="end" class="pin-label">G19</text>
+    
+    <circle cx="860" cy="460" r="3.5" fill="#ff8800" stroke="#cc6600" stroke-width="1.5"/>
+    <text x="848" y="465" text-anchor="end" class="pin-label">G21</text>
+    
+    <circle cx="860" cy="485" r="3.5" fill="#ff8800" stroke="#cc6600" stroke-width="1.5"/>
+    <text x="848" y="490" text-anchor="end" class="pin-label">G22</text>
+    
+    <circle cx="860" cy="510" r="3.5" fill="#ff8800" stroke="#cc6600" stroke-width="1.5"/>
+    <text x="848" y="515" text-anchor="end" class="pin-label">G23</text>
+    
+    <circle cx="860" cy="535" r="3.5" fill="#9933ff" stroke="#663399" stroke-width="1.5"/>
+    <text x="848" y="540" text-anchor="end" class="pin-label">G4</text>
+    
+    <!-- Right side pins -->
+    <circle cx="1020" cy="310" r="3.5" fill="#333" stroke="#000" stroke-width="1.5"/>
+    <text x="1032" y="315" text-anchor="start" class="pin-label">GND</text>
+    
+    <!-- USB Port (centered) -->
+    <rect x="910" y="570" width="60" height="20" fill="#000" stroke="#333" stroke-width="1.5" rx="3"/>
+    <text x="940" y="584" text-anchor="middle" class="pin-label" fill="#fff">USB-C</text>
+  </g>
+
+  <!-- ==================== PUSH BUTTONS ==================== -->
+  <g id="buttons-group">
+    <!-- Button 1 -->
+    <g id="button1">
+      <rect x="1150" y="280" width="90" height="70" fill="#f0f0f0" stroke="#333" stroke-width="2" rx="6"/>
+      <circle cx="1195" cy="310" r="10" fill="#666" stroke="#333" stroke-width="1.5"/>
+      <text x="1195" y="365" text-anchor="middle" class="component-name">Button 1</text>
+      <text x="1195" y="381" text-anchor="middle" class="pin-label">Uni→City</text>
+      
+      <!-- Button pins -->
+      <circle cx="1175" cy="340" r="3" fill="#666"/>
+      <circle cx="1215" cy="340" r="3" fill="#666"/>
+    </g>
+    
+    <!-- Button 2 -->
+    <g id="button2">
+      <rect x="1150" y="380" width="90" height="70" fill="#f0f0f0" stroke="#333" stroke-width="2" rx="6"/>
+      <circle cx="1195" cy="410" r="10" fill="#666" stroke="#333" stroke-width="1.5"/>
+      <text x="1195" y="465" text-anchor="middle" class="component-name">Button 2</text>
+      <text x="1195" y="481" text-anchor="middle" class="pin-label">City→Uni</text>
+      
+      <!-- Button pins -->
+      <circle cx="1175" cy="440" r="3" fill="#666"/>
+      <circle cx="1215" cy="440" r="3" fill="#666"/>
+    </g>
+    
+    <!-- Button 3 -->
+    <g id="button3">
+      <rect x="1150" y="480" width="90" height="70" fill="#f0f0f0" stroke="#333" stroke-width="2" rx="6"/>
+      <circle cx="1195" cy="510" r="10" fill="#666" stroke="#333" stroke-width="1.5"/>
+      <text x="1195" y="565" text-anchor="middle" class="component-name">Button 3</text>
+      <text x="1195" y="581" text-anchor="middle" class="pin-label">On/Off</text>
+      
+      <!-- Button pins -->
+      <circle cx="1175" cy="540" r="3" fill="#666"/>
+      <circle cx="1215" cy="540" r="3" fill="#666"/>
+    </g>
+  </g>
+
+  <!-- ==================== RESISTORS ==================== -->
+  <!-- Resistor 1 (for Green LED) -->
+  <g id="resistor1">
+    <line x1="1350" y1="320" x2="1380" y2="320" stroke="#ff8800" stroke-width="2"/>
+    <rect x="1380" y="315" width="35" height="10" fill="#fff8dc" stroke="#cc6600" stroke-width="1.5" rx="1"/>
+    <text x="1397" y="325" text-anchor="middle" class="pin-label" font-weight="bold">220Ω</text>
+    <line x1="1415" y1="320" x2="1450" y2="320" stroke="#ff8800" stroke-width="2"/>
+  </g>
+  
+  <!-- Resistor 2 (for Red LED) -->
+  <g id="resistor2">
+    <line x1="1350" y1="430" x2="1380" y2="430" stroke="#ff8800" stroke-width="2"/>
+    <rect x="1380" y="425" width="35" height="10" fill="#fff8dc" stroke="#cc6600" stroke-width="1.5" rx="1"/>
+    <text x="1397" y="435" text-anchor="middle" class="pin-label" font-weight="bold">220Ω</text>
+    <line x1="1415" y1="430" x2="1450" y2="430" stroke="#ff8800" stroke-width="2"/>
+  </g>
+
+  <!-- ==================== LEDs ==================== -->
+  <!-- Green LED -->
+  <g id="led-green">
+    <circle cx="1500" cy="320" r="12" fill="#00ff00" stroke="#009900" stroke-width="2"/>
+    <line x1="1488" y1="332" x2="1488" y2="360" stroke="#333" stroke-width="2"/>
+    <line x1="1512" y1="332" x2="1512" y2="360" stroke="#333" stroke-width="2"/>
+    <text x="1500" y="378" text-anchor="middle" class="component-name">LED Green</text>
+    <text x="1500" y="394" text-anchor="middle" class="pin-label">(Status)</text>
+    
+    <!-- Anode/Cathode labels -->
+    <text x="1478" y="345" text-anchor="end" class="pin-label" font-weight="bold">(+)</text>
+    <text x="1522" y="345" text-anchor="start" class="pin-label" font-weight="bold">(-)</text>
+  </g>
+  
+  <!-- Red LED -->
+  <g id="led-red">
+    <circle cx="1500" cy="430" r="12" fill="#ff0000" stroke="#cc0000" stroke-width="2"/>
+    <line x1="1488" y1="442" x2="1488" y2="470" stroke="#333" stroke-width="2"/>
+    <line x1="1512" y1="442" x2="1512" y2="470" stroke="#333" stroke-width="2"/>
+    <text x="1500" y="488" text-anchor="middle" class="component-name">LED Red</text>
+    <text x="1500" y="504" text-anchor="middle" class="pin-label">(Direction)</text>
+    
+    <!-- Anode/Cathode labels -->
+    <text x="1478" y="455" text-anchor="end" class="pin-label" font-weight="bold">(+)</text>
+    <text x="1522" y="455" text-anchor="start" class="pin-label" font-weight="bold">(-)</text>
+  </g>
+
+  <!-- ==================== BUZZER ==================== -->
+  <g id="buzzer">
+    <rect x="1450" y="550" width="100" height="70" fill="#fff0e6" stroke="#ff8c00" stroke-width="2.5" rx="6"/>
+    <circle cx="1470" cy="580" r="8" fill="#ff8c00" stroke="#cc6600" stroke-width="1.5"/>
+    <path d="M 1510 570 Q 1525 570 1525 580 Q 1525 590 1510 590" fill="none" stroke="#ff8c00" stroke-width="3"/>
+    <line x1="1470" y1="588" x2="1470" y2="610" stroke="#333" stroke-width="2"/>
+    <line x1="1530" y1="588" x2="1530" y2="610" stroke="#333" stroke-width="2"/>
+    <text x="1500" y="635" text-anchor="middle" class="component-name">Buzzer (5V)</text>
+    <text x="1470" y="655" text-anchor="middle" class="pin-label">(+) Long</text>
+    <text x="1530" y="655" text-anchor="middle" class="pin-label">(-) Short</text>
+  </g>
+
+  <!-- ==================== POWER WIRING ==================== -->
+  
+  <!-- Battery+ to Rocker Switch -->
+  <path d="M 70 250 L 70 200 L 75 200 L 75 430" fill="none" stroke="red" stroke-width="3.5" stroke-linecap="round"/>
+  
+  <!-- Rocker Switch OUT+ to LM2596 IN+ -->
+  <path d="M 75 540 L 75 630 L 220 630 L 220 350 L 260 350" fill="none" stroke="red" stroke-width="3.5" stroke-linecap="round"/>
+  
+  <!-- Battery- to LM2596 IN- -->
+  <path d="M 130 285 L 180 285 L 180 385 L 260 385" fill="none" stroke="black" stroke-width="3.5" stroke-linecap="round"/>
+  
+  <!-- LM2596 OUT+ to SIM7600 5-12V -->
+  <path d="M 400 350 L 480 350 L 480 360 L 560 360" fill="none" stroke="red" stroke-width="3.5" stroke-linecap="round"/>
+  
+  <!-- LM2596 OUT- to SIM7600 GND -->
+  <path d="M 400 385 L 490 385 L 490 390 L 560 390" fill="none" stroke="black" stroke-width="3.5" stroke-linecap="round"/>
+  
+  <!-- Rocker Switch GND connection -->
+  <path d="M 125 540 L 140 540 L 140 680 L 220 680 L 220 385" fill="none" stroke="black" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- ==================== COMMON GROUND CONNECTION (CRITICAL) ==================== -->
+  <!-- SIM7600 GND to ESP32 GND -->
+  <path d="M 560 390 L 500 390 L 500 100 L 860 100 L 860 310" fill="none" stroke="black" stroke-width="4" stroke-linecap="round" stroke-dasharray="6,4"/>
+  <text x="510" y="95" class="component-name" fill="#c41e3a" font-weight="bold">⚡ COMMON GROUND ⚡</text>
+
+  <!-- ==================== ESP32 USB POWER ==================== -->
+  <path d="M 1000 570 L 1000 750 L 1050 750" fill="none" stroke="red" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="4,3"/>
+  <rect x="1050" y="740" width="80" height="30" fill="#fff" stroke="#333" stroke-width="2" rx="4"/>
+  <text x="1090" y="762" text-anchor="middle" class="component-name">USB</text>
+  <text x="1090" y="778" text-anchor="middle" class="pin-label">Adapter/PC</text>
+  <path d="M 1050 755 L 1020 755 L 1020 570" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="4,3"/>
+
+  <!-- ==================== UART COMMUNICATION ==================== -->
+  
+  <!-- ESP32 GPIO 16 (RX) to SIM7600 TXD -->
+  <path d="M 860 360 L 800 360 L 800 450 L 560 450" fill="none" stroke="#00aa00" stroke-width="2.5" stroke-linecap="round"/>
+  <text x="780" y="405" class="wire-label" font-weight="bold">RX</text>
+  
+  <!-- ESP32 GPIO 17 (TX) to SIM7600 RXD -->
+  <path d="M 860 385 L 790 385 L 790 420 L 560 420" fill="none" stroke="#00aa00" stroke-width="2.5" stroke-linecap="round"/>
+  <text x="770" y="380" class="wire-label" font-weight="bold">TX</text>
+
+  <!-- ==================== BUTTON WIRING ==================== -->
+  
+  <!-- Button 1 (GPIO 18) -->
+  <path d="M 1175 340 L 1100 340 L 1100 410 L 860 410" fill="none" stroke="#ff8800" stroke-width="2.5" stroke-linecap="round"/>
+  <text x="1120" y="335" class="wire-label" font-weight="bold">G18</text>
+  
+  <!-- Button 2 (GPIO 19) -->
+  <path d="M 1175 440 L 1080 440 L 1080 435 L 860 435" fill="none" stroke="#ff8800" stroke-width="2.5" stroke-linecap="round"/>
+  <text x="1100" y="435" class="wire-label" font-weight="bold">G19</text>
+  
+  <!-- Button 3 (GPIO 21) -->
+  <path d="M 1175 540 L 1060 540 L 1060 460 L 860 460" fill="none" stroke="#ff8800" stroke-width="2.5" stroke-linecap="round"/>
+  <text x="1080" y="535" class="wire-label" font-weight="bold">G21</text>
+  
+  <!-- Buttons to GND (common) -->
+  <path d="M 1215 340 L 1280 340 L 1280 700 L 860 700 L 860 310" fill="none" stroke="black" stroke-width="3" stroke-linecap="round"/>
+  <text x="1300" y="520" class="wire-label" font-weight="bold">Button GND</text>
+
+  <!-- ==================== LED WIRING ==================== -->
+  
+  <!-- GPIO 22 to Green LED (through resistor) -->
+  <path d="M 860 485 L 800 485 L 800 320 L 1350 320" fill="none" stroke="#ff8800" stroke-width="2.5" stroke-linecap="round"/>
+  <text x="820" y="480" class="wire-label" font-weight="bold">G22</text>
+  
+  <!-- GPIO 23 to Red LED (through resistor) -->
+  <path d="M 860 510 L 780 510 L 780 430 L 1350 430" fill="none" stroke="#ff8800" stroke-width="2.5" stroke-linecap="round"/>
+  <text x="800" y="505" class="wire-label" font-weight="bold">G23</text>
+  
+  <!-- Green LED cathode to GND -->
+  <path d="M 1512 360 L 1512 520 L 1350 520 L 1350 310" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+  
+  <!-- Red LED cathode to GND -->
+  <path d="M 1512 470 L 1540 470 L 1540 540 L 1350 540 L 1350 310" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- ==================== BUZZER WIRING ==================== -->
+  
+  <!-- GPIO 4 to Buzzer (+) -->
+  <path d="M 860 535 L 750 535 L 750 580 L 1470 580" fill="none" stroke="#9933ff" stroke-width="2.5" stroke-linecap="round"/>
+  <text x="770" y="530" class="wire-label" font-weight="bold">G4</text>
+  
+  <!-- Buzzer (-) to GND -->
+  <path d="M 1530 610 L 1560 610 L 1560 700 L 860 700 L 860 310" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+  <text x="1570" y="650" class="wire-label" font-weight="bold">GND</text>
+
+  <!-- ==================== REFERENCE TABLE ==================== -->
+  <g id="pin-reference">
+    <rect x="50" y="820" width="1700" height="350" fill="#fff" stroke="#333" stroke-width="2" rx="8"/>
+    <text x="900" y="850" text-anchor="middle" class="title">Pin Connection Reference & Notes</text>
+    
+    <rect x="60" y="870" width="530" height="280" fill="#f9f9f9" stroke="#ccc" stroke-width="1" rx="4"/>
+    <text x="70" y="895" class="legend-title">ESP32 GPIO Connections:</text>
+    
+    <text x="70" y="920" class="note"><tspan font-weight="bold">GPIO 16 (RX2):</tspan> ← SIM7600 TXD</text>
+    <text x="70" y="940" class="note"><tspan font-weight="bold">GPIO 17 (TX2):</tspan> → SIM7600 RXD</text>
+    <text x="70" y="960" class="note"><tspan font-weight="bold">GPIO 18:</tspan> Button 1 (Uni→City
+)</text>
+    <text x="70" y="980" class="note"><tspan font-weight="bold">GPIO 19:</tspan> Button 2 (City→Uni)</text>
+    <text x="70" y="1000" class="note"><tspan font-weight="bold">GPIO 21:</tspan> Button 3 (On/Off)</text>
+    <text x="70" y="1020" class="note"><tspan font-weight="bold">GPIO 22:</tspan> Green LED (Status)</text>
+    <text x="70" y="1040" class="note"><tspan font-weight="bold">GPIO 23:</tspan> Red LED (Direction)</text>
+    <text x="70" y="1060" class="note"><tspan font
+-weight="bold">GPIO 4:</tspan> Buzzer Control</text>
+    
+    <rect x="620" y="870" width="1130" height="280" fill="#f9f9f9" stroke="#ccc" stroke-width="1" rx="4"/>
+    <text x="630" y="895" class="legend-title">Additional Notes:</text>
+    
+    <text x="630" y="920" class="note">• Ensure the common ground connection between all components to avoid erratic behavior.</text>
+    <text x="630" y="940" class="note">• Use appropriate resistors for LEDs to limit current and prevent damage.</text>
+    <text x="630" y="960" class="note">• The rocker switch controls power from the battery to the buck converter.</text>
+    <text x="630" y="980" class="note">• The LM2596 buck converter steps down voltage to a stable 5V for the SIM7600 module.</text>
+    <text x="630" y="1000" class="note">• Buttons are configured with pull-down resistors internally on the ESP32.</text>
+    <text x="630" y="1020" class="note">• The buzzer is driven directly from GPIO 4; ensure it does not exceed current limits.</text>
+    <text x="630" y="1040" class="note">• Double-check all connections before powering the system to prevent shorts.</text>
+    <text x="630" y="1060" class="note">• This diagram is for reference; actual wiring may vary based on specific components used.</text>
+  </g>
+
+  <!-- thsi is good -->
+</svg>
