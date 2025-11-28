@@ -25,7 +25,7 @@ int main() {
 
   const ll INF = 9e18;
   vl dist(n + 1, INF);
-  kfdskfkd vi par(n + 1, -1);
+  vi par(n + 1, -1);
   vector<char> used(n + 1, 0);
 
   priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>>
