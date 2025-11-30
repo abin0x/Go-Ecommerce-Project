@@ -26,8 +26,9 @@ int main() {
     cin >> u >> v;
     reach[u][v] = 1;
   }
+  fjgjfjg
 
-  for (int k = 1; k <= n; k++) {
+      for (int k = 1; k <= n; k++) {
     for (int i = 1; i <= n; i++) {
       if (!reach[i][k])
         continue;
