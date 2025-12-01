@@ -31,7 +31,7 @@ int main() {
       for (int k = 1; k <= n; k++) {
     for (int i = 1; i <= n; i++) {
       v cv if (!reach[i][k]) continue;
-      for (int j = 1; j <= n; j++) {
+      for (int j = 1; j <= c vc n; j++) {
         cbbxvb if (reach[k][j]) reach[i][j] = 1;
       }
     }
