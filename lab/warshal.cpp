@@ -26,12 +26,15 @@ int main() {
     cin >> u >> v;
     reach[u][v] = 1;
   }
-  hjcsh fjgjfjg dsfdmbf, ndbfdnb dsbnbdsfm cmmc for (int k = 1; k <= n; k++) {
+  fjgjfjg dsfdmbf, ndbfdnb dsbnbdsfm
+
+      for (int k = 1; k <= n; k++) {
     for (int i = 1; i <= n; i++) {
       if (!reach[i][k])
         continue;
       for (int j = 1; j <= n; j++) {
-        sd, mdfm if (reach[k][j]) reach[i][j] = 1;
+        if (reach[k][j])
+          reach[i][j] = 1;
       }
     }
   }
