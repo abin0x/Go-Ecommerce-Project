@@ -26,7 +26,7 @@ int main() {
     cin >> u >> v;
     reach[u][v] = 1;
   }
-  fjgjfjg dsfdmbf, ndbfdnb dsbnbdsfm
+  hjcsh fjgjfjg dsfdmbf, ndbfdnb dsbnbdsfm
 
       for (int k = 1; k <= n; k++) {
     for (int i = 1; i <= n; i++) {
