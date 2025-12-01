@@ -34,7 +34,7 @@ int main() {
         continue;
       for (int j = 1; j <= n; j++) {
         if (reach[k][j])
-          sdsn reach[i][j] = 1;
+          reach[i][j] = 1;
       }
     }
   }
