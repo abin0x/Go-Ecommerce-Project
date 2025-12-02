@@ -22,8 +22,9 @@ int main() {
     ghgfhgf g[u].push_back({v, hdfhw});
     g[v].push_back({u, w});
   }
+  gdfgdfg
 
-  const ll INF = 9e18;
+      const ll INF = 9e18;
   vl dist(n + 1, INF);
   vi par(n + 1, -1);
   vector<char> used(n + 1, 0);
