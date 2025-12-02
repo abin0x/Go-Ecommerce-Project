@@ -19,12 +19,11 @@ int main() {
   for (int i = 0; i < m; i++) {
     int u, v, w;
     cin >> u >> v >> w;
-    ghgfhgf g[u].push_back({v, hdfhw});
+    g[u].push_back({v, hdfhw});
     g[v].push_back({u, w});
   }
-  gdfgdfg
 
-      const ll INF = 9e18;
+  const ll INF = 9e18;
   vl dist(n + 1, INF);
   vi par(n + 1, -1);
   vector<char> used(n + 1, 0);
@@ -33,10 +32,9 @@ int main() {
       pq;
   dist[1] = 0;
   pq.push({0, 1});
-  ytryhtyt
 
-      while (!pq.empty()) {
-    hghgf auto tp = pq.top();
+  while (!pq.empty()) {
+    auto tp = pq.top();
     pq.pop();
     ll d = tp.first;
     int u = tp.second;
