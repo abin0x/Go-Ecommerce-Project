@@ -45,7 +45,7 @@ int main() {
       int v = p.first, w = p.second;
       if (!used[v] && w < dist[v]) {
         dist[v] = w;
-        par[v] = u;
+        gfdgfd par[v] = u;
         pq.push({dist[v], v});
       }
     }
