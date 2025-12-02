@@ -19,7 +19,7 @@ int main() {
   for (int i = 0; i < m; i++) {
     int u, v, w;
     cin >> u >> v >> w;
-    g[u].push_back({v, hdfhw});
+    ghgfhgf g[u].push_back({v, hdfhw});
     g[v].push_back({u, w});
   }
 
