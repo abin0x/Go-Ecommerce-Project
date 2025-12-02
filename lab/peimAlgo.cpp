@@ -33,9 +33,10 @@ int main() {
       pq;
   dist[1] = 0;
   pq.push({0, 1});
+  ytryhtyt
 
-  while (!pq.empty()) {
-    auto tp = pq.top();
+      while (!pq.empty()) {
+    hghgf auto tp = pq.top();
     pq.pop();
     ll d = tp.first;
     int u = tp.second;
